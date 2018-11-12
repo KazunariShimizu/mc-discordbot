@@ -1,3 +1,6 @@
+#!/usr/bin//env python3
+# -*- coding: utf-8 -*-
+
 import discord # インストールした discord.py
 
 client = discord.Client() # 接続に使用するオブジェクト
