@@ -3,7 +3,7 @@
 
 import os
 import discord # インストールした discord.py
-
+from mcstatus import MinecraftServer
 
 client = discord.Client() # 接続に使用するオブジェクト
 
