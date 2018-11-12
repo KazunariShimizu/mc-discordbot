@@ -1,6 +1,7 @@
 #!/usr/bin//env python3
 # -*- coding: utf-8 -*-
 
+import os
 import discord # インストールした discord.py
 
 client = discord.Client() # 接続に使用するオブジェクト
@@ -19,4 +20,4 @@ async def on_message(message):
 
 # botの接続と起動
 # （tokenにはbotアカウントのアクセストークンを入れてください）
-client.run('')
+client.run(os.environ["MC_BOT_KEY"])
