@@ -24,7 +24,7 @@ class Trans:
     def translate(self):
 
         # 0x00 - 0x7F is ascii character code point
-        if re.search(r"[\x00-\x7F]+", self.txt):
+        if re.search(r"^[\x00-\x7F]+$", self.txt):
             self.en_to_ja()
         else:
             self.ja_to_en()
