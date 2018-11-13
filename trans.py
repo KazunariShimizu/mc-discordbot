@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import re
 
-from langdetect import detect
 from py_translator import Translator
 
 
@@ -22,15 +22,12 @@ class Trans:
             text=self.txt, dest="en").text
 
     def translate(self):
-        lang = detect(self.txt)
 
-        if "en" == lang:
+        # 0x00 - 0x7F is ascii character code point
+        if re.search(r"[\x00-\x7F]+", self.txt):
             self.en_to_ja()
-        elif "ja" == lang:
-            self.ja_to_en()
         else:
-            print("cannot detect lang")
-            return "cannot detect lang"
+            self.ja_to_en()
 
         return self.translated
 

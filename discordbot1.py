@@ -29,10 +29,10 @@ async def on_message(message):
                  "速さは、replied in {1} ms だよ！"\
                  .format(status.players.online, status.latency)
         await client.send_message(message.channel, reply)
-
-    # 翻訳してみる
-    t = trans.Trans(message.content)
-    await client.send_message(t.translate())
+    elif message.content.startswith("/t "):
+        # 翻訳してみる
+        t = trans.Trans(message.content.replace("/t ", ""))
+        await client.send_message(message.channel, t.translate())
 
 # botの接続と起動
 # （tokenにはbotアカウントのアクセストークンを入れてください）
