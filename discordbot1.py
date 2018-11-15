@@ -5,11 +5,13 @@ import os
 import discord
 
 import trans
+import joke
 
 from mcstatus import MinecraftServer
 
 CMD_PREFIX = "\\"
 TRANSLATE_CMD = CMD_PREFIX + "t "
+JOKE_CMD = CMD_PREFIX + "g "
 
 class MyClient(discord.Client):
     """discord bot class"""
@@ -32,7 +34,10 @@ class MyClient(discord.Client):
             # 翻訳してみる
             t = trans.Trans(message.content.replace(TRANSLATE_CMD, ""))
             await client.send_message(message.channel, t.translate())
-
+        elif message.content.startswith(JOKE_CMD):
+            # ジョークレスポンス
+            j = joke.Joke()
+            await client.send_message(message.channel, j.choice())
 
 if __name__ == "__main__":
     # botの接続と起動
