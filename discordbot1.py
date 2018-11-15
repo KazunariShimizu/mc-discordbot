@@ -19,7 +19,7 @@ TRANSLATE_CMD = CMD_PREFIX + "t "
 JOKE_CMD = CMD_PREFIX + "g "
 
 def _extract_minecraft_chat(chat):
-    """マイクラチャットから入力値のみを抽出する
+    """マイクラチャットから入力値\t のみを抽出する
     player » \t english translation test (￥t 園gl位sh tr案sl阿智音 手st)
     ->english translation test"""
 
@@ -69,7 +69,8 @@ class MyClient(discord.Client):
             # マイクラサーバ内からのチャット翻訳
             t = trans.Trans(minecraft_chat)
             await client.send_message(message.channel, t.translate())
-        elif message.content.startswith(JOKE_CMD):
+        elif message.content.startswith(JOKE_CMD) \
+             or re.search("»\s\\\\g\s", message.content):
             # ジョークレスポンス
             j = joke.Joke()
             await client.send_message(message.channel, j.choice())
