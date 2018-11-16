@@ -3,6 +3,7 @@
 
 import os
 import re
+import logging
 
 # pip
 import discord
@@ -13,6 +14,12 @@ import joke
 
 # pip
 from mcstatus import MinecraftServer
+
+logger = logging.getLogger("discord")
+logger.setLevel(logging.DEBUG)
+handler = logging.FileHandler(filename="discord.log", encoding="utf-8", mode="w")
+handler.setFormatter(logging.Formatter("%(asctime)s:%(levelname)s:%(name)s: %(message)s"))
+logger.addHandler(handler)
 
 CMD_PREFIX = "\\"
 TRANSLATE_CMD = CMD_PREFIX + "t "
