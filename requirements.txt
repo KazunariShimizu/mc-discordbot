@@ -14,7 +14,6 @@ langdetect==1.0.7
 lxml==4.2.5
 mcstatus==2.2
 multidict==4.4.2
-pkg-resources==0.0.0
 py-translate==1.0.3
 py-translator==1.8.9
 python-slugify==1.2.6
