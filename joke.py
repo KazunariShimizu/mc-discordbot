@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
 import random
 
-JOKE_RESPONSE_FILE = "jokes.txt"
+JOKE_RESPONSE_FILE = os.path.join(os.path.dirname(__file__), "jokes.txt")
 
 class Joke:
     """ジョークレスポンスを返すクラス"""
