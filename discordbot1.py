@@ -19,7 +19,7 @@ LOG_FILE = os.path.join(os.path.dirname(__file__), "discord.log")
 
 logger = logging.getLogger("discord")
 logger.setLevel(logging.WARNING)
-handler = logging.FileHandler(filename=LOG_FILE, encoding="utf-8", mode="w")
+handler = logging.FileHandler(filename=LOG_FILE, encoding="utf-8", mode="a")
 handler.setFormatter(logging.Formatter("%(asctime)s:%(levelname)s:%(name)s: %(message)s"))
 logger.addHandler(handler)
 
