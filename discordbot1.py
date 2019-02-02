@@ -63,7 +63,8 @@ class MyClient(discord.Client):
         # マイクラサーバ内からのチャットを抽出
         minecraft_chat = _extract_minecraft_chat(message.content)
 
-        if message.content.startswith(NEKO_CMD):
+        if message.content.startswith(NEKO_CMD) \
+             or re.search("\\\\neko", message.content):
             reply = 'にゃーん '
             server = MinecraftServer.lookup("toraden.aa0.netvolante.jp:25565")
             status = server.status()
