@@ -26,6 +26,7 @@ logger.addHandler(handler)
 CMD_PREFIX = "\\"
 TRANSLATE_CMD = CMD_PREFIX + "t "
 JOKE_CMD = CMD_PREFIX + "g "
+NEKO_CMD = CMD_PREFIX + "neko"
 
 def _extract_minecraft_chat(chat):
     """マイクラチャットから入力値\t のみを抽出する
@@ -62,7 +63,7 @@ class MyClient(discord.Client):
         # マイクラサーバ内からのチャットを抽出
         minecraft_chat = _extract_minecraft_chat(message.content)
 
-        if message.content.startswith(CMD_PREFIX + "neko"):
+        if message.content.startswith(NEKO_CMD):
             reply = 'にゃーん '
             server = MinecraftServer.lookup("toraden.aa0.netvolante.jp:25565")
             status = server.status()
