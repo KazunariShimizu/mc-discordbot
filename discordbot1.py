@@ -64,9 +64,9 @@ class MyClient(discord.Client):
 
         if message.content.startswith(CMD_PREFIX + "neko"):
             reply = 'にゃーん '
-            server = MinecraftServer.lookup("mc.toraden.com:25565")
+            server = MinecraftServer.lookup("toraden.aa0.netvolante.jp:25565")
             status = server.status()
-            reply += "mc.toraden.comのプレーヤーは {0} players 居るよ！"\
+            reply += "toraden.aa0.netvolante.jpのプレーヤーは {0} players 居るよ！"\
                      "速さは、replied in {1} ms だよ！"\
                      .format(status.players.online, status.latency)
             await client.send_message(message.channel, reply)
