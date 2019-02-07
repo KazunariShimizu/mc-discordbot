@@ -14,8 +14,7 @@ langdetect==1.0.7
 lxml==4.2.5
 mcstatus==2.2
 multidict==4.4.2
-py-translate==1.0.3
-py-translator==1.8.9
+py-translator
 python-slugify==1.2.6
 requests==2.20.1
 six==1.11.0
