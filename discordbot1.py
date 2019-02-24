@@ -16,7 +16,7 @@ import joke
 from mcstatus import MinecraftServer
 
 LOG_FILE = os.path.join(os.path.dirname(__file__), "discord.log")
-DOMAIN = "toraden.aa0.netvolante.jp"
+DOMAIN = "toraden.mydns.jp"
 PORT = 25565
 
 logger = logging.getLogger("discord")
@@ -27,7 +27,7 @@ logger.addHandler(handler)
 
 CMD_PREFIX = "\\"
 TRANSLATE_CMD = CMD_PREFIX + "t "
-JOKE_CMD = CMD_PREFIX + "g "
+JOKE_CMD = CMD_PREFIX + "g"
 NEKO_CMD = CMD_PREFIX + "neko"
 
 
@@ -68,11 +68,10 @@ class MyClient(discord.Client):
         minecraft_chat = _extract_minecraft_chat(message.content)
 
         if message.content.startswith(NEKO_CMD) \
-             or re.search(r"\\neko", message.content):
-            reply = 'にゃーん '
+             or re.search(r"»\s\\neko", message.content):
             server = MinecraftServer.lookup(DOMAIN + ":" + str(PORT))
             status = server.status()
-            reply += DOMAIN + "のプレーヤーは {0} players 居るよ！"\
+            reply = "にゃーん " + DOMAIN + "のプレーヤーは {0} players 居るよ！"\
                 "速さは、replied in {1} ms だよ！"\
                 .format(status.players.online, status.latency)
             await client.send_message(message.channel, reply)
@@ -85,7 +84,7 @@ class MyClient(discord.Client):
             t = trans.Trans(minecraft_chat)
             await client.send_message(message.channel, t.translate())
         elif message.content.startswith(JOKE_CMD) \
-             or re.search(r"»\s\\g\s", message.content):
+             or re.search(r"»\s\\g", message.content):
             # ジョークレスポンス
             j = joke.Joke()
             await client.send_message(message.channel, j.choice())
