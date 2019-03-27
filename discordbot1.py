@@ -16,7 +16,7 @@ import joke
 from mcstatus import MinecraftServer
 
 LOG_FILE = os.path.join(os.path.dirname(__file__), "discord.log")
-DOMAIN = "toraden.mydns.jp"
+DOMAIN = "toraden.com"
 PORT = 25565
 
 logger = logging.getLogger("discord")
