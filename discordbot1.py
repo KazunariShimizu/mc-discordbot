@@ -9,8 +9,7 @@ import logging
 import discord
 
 # my module
-import trans
-import joke
+from lib import trans, joke, discord_thread
 
 # pip
 from mcstatus import MinecraftServer
@@ -64,6 +63,9 @@ class MyClient(discord.Client):
             # Bot自身の発言を無視
             return
 
+        my_thread = discord_thread.DiscordThread(self, message)
+        await my_thread.create()
+
         # マイクラサーバ内からのチャットを抽出
         minecraft_chat = _extract_minecraft_chat(message.content)
 
@@ -74,20 +76,20 @@ class MyClient(discord.Client):
             reply = "にゃーん " + DOMAIN + "のプレーヤーは {0} players 居るよ！"\
                 "速さは、replied in {1} ms だよ！"\
                 .format(status.players.online, status.latency)
-            await client.send_message(message.channel, reply)
+            await message.channel.send(reply)
         elif message.content.startswith(TRANSLATE_CMD):
             # 翻訳してみる
             t = trans.Trans(message.content.replace(TRANSLATE_CMD, ""))
-            await client.send_message(message.channel, t.translate())
+            await message.channel.send(t.translate())
         elif minecraft_chat:
             # マイクラサーバ内からのチャット翻訳
             t = trans.Trans(minecraft_chat)
-            await client.send_message(message.channel, t.translate())
+            await message.channel.send(t.translate())
         elif message.content.startswith(JOKE_CMD) \
              or re.search(r"»\s\\g", message.content):
             # ジョークレスポンス
             j = joke.Joke()
-            await client.send_message(message.channel, j.choice())
+            await client.send(message.channel, j.choice())
 
 
 if __name__ == "__main__":
