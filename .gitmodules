@@ -1,0 +1,3 @@
+[submodule "py_translator"]
+	path = py_translator
+	url = https://github.com/markolofsen/py_translator.git
