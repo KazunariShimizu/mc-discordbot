@@ -3,7 +3,7 @@
 
 import re
 
-from py_translator import Translator
+from py_translator.dist import Translator
 
 
 class Trans:
