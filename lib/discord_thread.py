@@ -2,7 +2,7 @@ class DiscordThread:
 
     def __init__(self, client, message):
         # Thread化するチャネル名リスト
-        self.channel_names = ['要望スレッド', '不具合報告スレッド', '質問スレッド','技術関連スレッド']
+        self.channel_names = ['要望スレッド', '不具合報告スレッド', '質問スレッド', '技術関連スレッド']
 
         # カテゴリ名からチャネルを取得する方法は無い？
         # self.category_name = 'スレッド'
@@ -19,9 +19,13 @@ class DiscordThread:
 
         # In name: Must be between 1 and 100 in length.
         channel_name = f'{self.message.channel.name}：{self.message.content}'[:100]
-
-        payload = {'name': channel_name, 'category': category_channel ,'position': -1}
+        payload = {'name': channel_name, 'category': category_channel}
         text_channel = await self.message.guild.create_text_channel(**payload)
+        await text_channel.edit(position=0)
+
         await text_channel.send(self.message.jump_url)
-        await self.client.get_channel(self.category_id).edit(position=0)
+
+        category_position = len(list(self.client.get_all_channels())) - 2
+        await category_channel.edit(position=category_position)
+
         await self.message.channel.send(text_channel.mention)
