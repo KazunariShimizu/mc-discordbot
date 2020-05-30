@@ -20,7 +20,7 @@ class DiscordThread:
         # In name: Must be between 1 and 100 in length.
         channel_name = f'{self.message.channel.name}：{self.message.content}'[:100]
 
-        payload = {'name': channel_name, 'category': category_channel, }
+        payload = {'name': channel_name, 'category': category_channel}
         text_channel = await self.message.guild.create_text_channel(**payload)
         await text_channel.send(self.message.jump_url)
         await self.client.get_channel(self.category_id).edit(position=0)
