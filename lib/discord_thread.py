@@ -2,11 +2,11 @@ class DiscordThread:
 
     def __init__(self, client, message):
         # Thread化するチャネル名リスト
-        self.channel_names = ['要望-スレッド作成', '不具合報告-スレッド作成', '質問-スレッド作成']
+        self.channel_names = ['要望', '不具合報告', '質問']
 
         # カテゴリ名からチャネルを取得する方法は無い？
         # self.category_name = 'スレッド'
-        self.category_id = 715916859303526461  # 'スレッド' カテゴリのID
+        self.category_id = 716155137831338097  # 'スレッド' カテゴリのID
 
         self.client = client
         self.message = message
